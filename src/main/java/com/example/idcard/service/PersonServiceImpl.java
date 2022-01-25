@@ -18,7 +18,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public ResponseEntity createPerson(Person person) {
-        if(finCodeChecker(person)){
+        if(!finCodeChecker(person)){
             personRepo.save(person);
             return ResponseEntity.status(HttpStatus.CREATED).body("New person is created!");
         }else{
