@@ -2,7 +2,6 @@ package com.example.idcard.model;
 
 
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
