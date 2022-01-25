@@ -75,12 +75,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean finCodeChecker(Person person) {
-        List<String> finCodes = personRepo.getFinCodes();
-        for(String f : finCodes){
-            if(f.equalsIgnoreCase(person.getFinCode())){
-                return true;
-            }
+
+        int num = personRepo.getFinCodeCount(person.getFinCode());
+
+        if(num>0){
+            return true;
+        }else {
+            return false;
         }
-        return false;
     }
 }

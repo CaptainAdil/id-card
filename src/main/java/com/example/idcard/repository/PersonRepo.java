@@ -27,4 +27,6 @@ public interface PersonRepo extends JpaRepository<Person,Integer> {
     @Query(nativeQuery = true,value = "SELECT FIN_CODE AS finCode FROM PERSON")
     public List<String> getFinCodes();
 
+    @Query(nativeQuery = true,value = "SELECT COUNT(FIN_CODE) FROM PERSON where LOWER(FIN_CODE) = LOWER(:finCode); ")
+    public int getFinCodeCount(@Param("finCode") String finCode);
 }
