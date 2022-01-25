@@ -18,8 +18,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public ResponseEntity createPerson(Person person) {
-        personRepo.save(person);
-        return ResponseEntity.status(HttpStatus.CREATED).body("New Person is created!");
+        if(finCodeChecker(person)){
+            personRepo.save(person);
+            return ResponseEntity.status(HttpStatus.CREATED).body("New person is created!");
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Person with this fincode is already exist!");
+        }
 
     }
 
@@ -67,5 +71,16 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public boolean exists(int id) {
         return personRepo.existsById(id);
+    }
+
+    @Override
+    public boolean finCodeChecker(Person person) {
+        List<String> finCodes = personRepo.getFinCodes();
+        for(String f : finCodes){
+            if(f.equalsIgnoreCase(person.getFinCode())){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -23,4 +23,8 @@ public interface PersonRepo extends JpaRepository<Person,Integer> {
     @Query(nativeQuery = true, value = "SELECT FIRST_NAME AS firstName,LAST_NAME AS lastName," +
             "FATHER_NAME as fatherName from PERSON")
     public List<PersonDto> getAll();
+
+    @Query(nativeQuery = true,value = "SELECT FIN_CODE AS finCode FROM PERSON")
+    public List<String> getFinCodes();
+
 }

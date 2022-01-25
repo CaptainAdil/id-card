@@ -14,4 +14,5 @@ public interface PersonService {
     public ResponseEntity<Object> getPerson(int id);
     public List<PersonDto> getPersons();
     public boolean exists(int id);
+    public boolean finCodeChecker(Person person);
 }
