@@ -11,6 +11,9 @@ public interface PersonRepo extends JpaRepository<Person,Integer> {
 
 
 
+    @Override
+    boolean existsById(Integer integer);
+
     public Person findById(int id);
 
     public void deleteById(int id);
