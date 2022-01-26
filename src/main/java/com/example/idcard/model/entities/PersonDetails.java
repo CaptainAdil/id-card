@@ -5,12 +5,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
 @Entity
+@Data
 public class PersonDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "details_id")
     private int detailsId;
 
@@ -19,4 +18,11 @@ public class PersonDetails {
     private String organization;
     private String militaryService;
 
+    public PersonDetails(){};
+    public PersonDetails(String placeOfResidence, String organization, String militaryService) {
+        this.placeOfResidence = placeOfResidence;
+        this.organization = organization;
+        this.militaryService = militaryService;
+    }
 }
+

@@ -15,4 +15,6 @@ public interface PersonService {
     public List<PersonDto> getPersons();
     public boolean exists(int id);
     public boolean finCodeChecker(Person person);
+
+    public String getAlphaNumericString();
 }

@@ -81,8 +81,22 @@ public class PersonServiceImpl implements PersonService {
         if(person1==null){
             return true;
         }else{
-            return false;
+            person.setFinCode(getAlphaNumericString());
+            return true;
         }
 
     }
+
+    public String getAlphaNumericString(){
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(6);
+
+        for(int i = 0;i<6;i++){
+            int index = (int)(AlphaNumericString.length() * Math.random());
+            sb.append(AlphaNumericString.charAt(index));
+        }
+        return sb.toString();
+    }
+
+
 }
