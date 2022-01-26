@@ -1,7 +1,7 @@
 package com.example.idcard.repository;
 
 import com.example.idcard.dto.PersonDto;
-import com.example.idcard.model.Person;
+import com.example.idcard.model.entities.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,13 +18,11 @@ public interface PersonRepo extends JpaRepository<Person,Integer> {
     public PersonDto findById( @Param("id") int id);
 
 
-    public void deleteById(int id);
+//    public void deleteById(int id);
 
     @Query(nativeQuery = true, value = "SELECT FIRST_NAME AS firstName,LAST_NAME AS lastName," +
             "FATHER_NAME as fatherName from PERSON")
     public List<PersonDto> getAll();
 
-
-    @Query(nativeQuery = true,value = "SELECT COUNT(FIN_CODE) FROM PERSON where LOWER(FIN_CODE) = LOWER(:finCode); ")
-    public int getFinCodeCount(@Param("finCode") String finCode);
+    public Person findByFinCodeIgnoreCase(String finCode);
 }

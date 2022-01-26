@@ -1,7 +1,7 @@
 package com.example.idcard.service;
 
 import com.example.idcard.dto.PersonDto;
-import com.example.idcard.model.Person;
+import com.example.idcard.model.entities.Person;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

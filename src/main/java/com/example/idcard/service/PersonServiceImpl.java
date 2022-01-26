@@ -1,7 +1,7 @@
 package com.example.idcard.service;
 
 import com.example.idcard.dto.PersonDto;
-import com.example.idcard.model.Person;
+import com.example.idcard.model.entities.Person;
 import com.example.idcard.repository.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public ResponseEntity createPerson(Person person) {
-        if(!finCodeChecker(person)){
+        if(finCodeChecker(person)){
             personRepo.save(person);
             return ResponseEntity.status(HttpStatus.CREATED).body("New person is created!");
         }else{
@@ -76,12 +76,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public boolean finCodeChecker(Person person) {
 
-        int num = personRepo.getFinCodeCount(person.getFinCode());
+        Person person1 = personRepo.findByFinCodeIgnoreCase(person.getFinCode());
 
-        if(num>0){
+        if(person1==null){
             return true;
-        }else {
+        }else{
             return false;
         }
+
     }
 }

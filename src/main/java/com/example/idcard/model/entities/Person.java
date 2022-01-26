@@ -1,13 +1,12 @@
-package com.example.idcard.model;
+package com.example.idcard.model.entities;
 
 
+import com.example.idcard.model.enums.*;
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
+import java.util.Date;
 
 @Entity
 @Data
@@ -31,15 +30,22 @@ public class Person {
     @Column(unique = true)
     private String finCode;
 
-    private String maritalStatus;
-    private String militaryService;
+
+    @Enumerated(EnumType.STRING)
+    private maritalStatus maritalStatus;
 
     private String bloodGroup;
     private String eyeColour;
-    private String gender;
+
+
+    @Enumerated(EnumType.STRING)
+    private gender gender;
     private int height;
 
-    private String placeOfResidence;
-    private String organization;
+    private Date dateOfIssue;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "details_id")
+    private PersonDetails personDetails;
 
 }

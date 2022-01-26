@@ -1,7 +1,7 @@
 package com.example.idcard.rest;
 
 import com.example.idcard.dto.PersonDto;
-import com.example.idcard.model.Person;
+import com.example.idcard.model.entities.Person;
 import com.example.idcard.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +42,5 @@ public class PersonController {
     public ResponseEntity delete(@PathVariable int id){
         return personService.deletePerson(id);
     }
-
 
 }
