@@ -18,11 +18,10 @@ public interface PersonRepo extends JpaRepository<Person,Integer> {
     public PersonDto findById( @Param("id") int id);
 
 
-//    public void deleteById(int id);
-
     @Query(nativeQuery = true, value = "SELECT FIRST_NAME AS firstName,LAST_NAME AS lastName," +
             "FATHER_NAME as fatherName from PERSON")
     public List<PersonDto> getAll();
+
 
     public Person findByFinCodeIgnoreCase(String finCode);
 }

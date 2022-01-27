@@ -16,8 +16,10 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     PersonRepo personRepo;
 
+
     @Override
     public ResponseEntity createPerson(Person person) {
+
         if(finCodeChecker(person)){
             personRepo.save(person);
             return ResponseEntity.status(HttpStatus.CREATED).body("New person is created!");
@@ -78,25 +80,24 @@ public class PersonServiceImpl implements PersonService {
 
         Person person1 = personRepo.findByFinCodeIgnoreCase(person.getFinCode());
 
+
         if(person1==null){
             return true;
         }else{
-            person.setFinCode(getAlphaNumericString());
-            return true;
+            return false;
         }
 
     }
 
     public String getAlphaNumericString(){
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
-        StringBuilder sb = new StringBuilder(6);
+        StringBuilder sb = new StringBuilder(AlphaNumericString.length());
 
-        for(int i = 0;i<6;i++){
+        for(int i = 0;i<AlphaNumericString.length();i++){
             int index = (int)(AlphaNumericString.length() * Math.random());
             sb.append(AlphaNumericString.charAt(index));
         }
         return sb.toString();
     }
-
 
 }

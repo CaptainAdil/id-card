@@ -4,14 +4,16 @@ package com.example.idcard.model.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
 public class PersonDetails {
 
     @Id
-    @Column(name = "details_id")
-    private int detailsId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
 
     private String placeOfResidence;
@@ -24,5 +26,13 @@ public class PersonDetails {
         this.organization = organization;
         this.militaryService = militaryService;
     }
+
+    @OneToOne
+    @JoinColumn(name = "details_id")
+    private Person person;
+
+    @OneToMany (mappedBy="personDetails", fetch=FetchType.EAGER)
+    private List<PhoneNumber> phoneNumbers;
+
 }
 

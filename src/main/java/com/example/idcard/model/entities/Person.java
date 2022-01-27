@@ -2,20 +2,22 @@ package com.example.idcard.model.entities;
 
 
 import com.example.idcard.model.enums.*;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
 
+@Setter
+@Getter
 @Entity
-@Data
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @NotBlank(message = "First name must not be blank")
     private String firstName;
@@ -44,8 +46,7 @@ public class Person {
     private int height;
 
 
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "person")
     @JoinColumn(name = "details_id")
     private PersonDetails personDetails;
 
