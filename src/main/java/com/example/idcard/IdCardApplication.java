@@ -1,20 +1,7 @@
 package com.example.idcard;
 
-import com.example.idcard.model.entities.Person;
-import com.example.idcard.model.entities.PersonDetails;
-import com.example.idcard.model.enums.gender;
-import com.example.idcard.model.enums.maritalStatus;
-import com.example.idcard.repository.PersonRepo;
-import com.example.idcard.rest.PersonController;
-import com.example.idcard.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
-
-import java.math.BigInteger;
 
 @SpringBootApplication
 public class IdCardApplication{

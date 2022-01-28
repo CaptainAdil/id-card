@@ -1,4 +1,4 @@
-package com.example.idcard.service;
+package com.example.idcard.service.person;
 
 import com.example.idcard.dto.PersonDto;
 import com.example.idcard.model.entities.Person;

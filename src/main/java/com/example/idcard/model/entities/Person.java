@@ -17,6 +17,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
     private int id;
 
     @NotBlank(message = "First name must not be blank")
@@ -47,7 +48,8 @@ public class Person {
 
 
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "person")
-    @JoinColumn(name = "details_id")
+//    @JoinColumn(name = "person_id")
+//    @JsonBackReference
     private PersonDetails personDetails;
 
     public Person(){}

@@ -1,8 +1,11 @@
-package com.example.idcard.service;
+package com.example.idcard.service.person;
 
 import com.example.idcard.dto.PersonDto;
 import com.example.idcard.model.entities.Person;
+import com.example.idcard.model.entities.PersonDetails;
+import com.example.idcard.model.entities.PhoneNumber;
 import com.example.idcard.repository.PersonRepo;
+import com.example.idcard.repository.PhoneNumberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +19,25 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     PersonRepo personRepo;
 
+    @Autowired
+    PhoneNumberRepo phoneNumberRepo;
 
     @Override
     public ResponseEntity createPerson(Person person) {
 
+        System.out.println(person.getFinCode());
         if(finCodeChecker(person)){
+            PersonDetails personDetails = person.getPersonDetails();
+            personDetails.setPerson(person);
+
+
+            for(int i=0;i<personDetails.getPhoneNumbers().size();i++){
+                if(!phoneNumberChecker(person.getPersonDetails().getPhoneNumbers().get(i))){
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The phone number already exists");
+                }
+                person.getPersonDetails().getPhoneNumbers().get(i).setPersonDetails(personDetails);
+            }
+
             personRepo.save(person);
             return ResponseEntity.status(HttpStatus.CREATED).body("New person is created!");
         }else{
@@ -100,4 +117,12 @@ public class PersonServiceImpl implements PersonService {
         return sb.toString();
     }
 
+    public boolean phoneNumberChecker(PhoneNumber phoneNumber){
+        PhoneNumber phoneNumber1= phoneNumberRepo.findByPhoneNumber(phoneNumber.getPhoneNumber());
+        if(phoneNumber1 == null){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

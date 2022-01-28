@@ -2,7 +2,7 @@ package com.example.idcard.rest;
 
 import com.example.idcard.dto.PersonDto;
 import com.example.idcard.model.entities.Person;
-import com.example.idcard.service.PersonService;
+import com.example.idcard.service.person.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

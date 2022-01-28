@@ -22,6 +22,5 @@ public interface PersonRepo extends JpaRepository<Person,Integer> {
             "FATHER_NAME as fatherName from PERSON")
     public List<PersonDto> getAll();
 
-
     public Person findByFinCodeIgnoreCase(String finCode);
 }
