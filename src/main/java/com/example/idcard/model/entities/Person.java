@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -47,9 +48,9 @@ public class Person {
     private int height;
 
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "person")
 //    @JoinColumn(name = "person_id")
 //    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "person")
     private PersonDetails personDetails;
 
     public Person(){}

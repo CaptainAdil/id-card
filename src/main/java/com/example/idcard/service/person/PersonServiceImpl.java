@@ -4,9 +4,11 @@ import com.example.idcard.dto.PersonDto;
 import com.example.idcard.model.entities.Person;
 import com.example.idcard.model.entities.PersonDetails;
 import com.example.idcard.model.entities.PhoneNumber;
+import com.example.idcard.repository.PersonDetailsRepo;
 import com.example.idcard.repository.PersonRepo;
 import com.example.idcard.repository.PhoneNumberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     PhoneNumberRepo phoneNumberRepo;
+
+    @Autowired
+    PersonDetailsRepo personDetailsRepo;
 
     @Override
     public ResponseEntity createPerson(Person person) {
@@ -73,9 +78,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
 
+
     @Override
-    public List<PersonDto> getPersons() {
-        return personRepo.getAll();
+    public List<PersonDto> getPersons(Pageable pageable) {
+        return personRepo.getAll(pageable);
     }
 
     @Override
@@ -125,4 +131,5 @@ public class PersonServiceImpl implements PersonService {
             return false;
         }
     }
+
 }

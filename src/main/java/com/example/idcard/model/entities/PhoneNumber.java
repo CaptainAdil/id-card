@@ -33,4 +33,11 @@ public class PhoneNumber {
         this.phoneNumber = phoneNumber;
         this.personDetails = personDetails;
     }
+
+    @Override
+    public String toString() {
+        return "PhoneNumber{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

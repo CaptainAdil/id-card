@@ -2,6 +2,7 @@ package com.example.idcard.repository;
 
 import com.example.idcard.model.entities.PersonDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 
 public interface PersonDetailsRepo extends JpaRepository<PersonDetails,Integer> {
 
@@ -10,4 +11,5 @@ public interface PersonDetailsRepo extends JpaRepository<PersonDetails,Integer> 
     public void deleteById(Integer id);
 
     public PersonDetails getById(Integer integer);
+
 }
